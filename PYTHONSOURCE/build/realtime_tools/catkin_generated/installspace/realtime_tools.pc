@@ -1,0 +1,8 @@
+prefix=/home/jsm/ros_ws/install
+
+Name: realtime_tools
+Description: Description of realtime_tools
+Version: 1.9.1
+Cflags: -I/home/jsm/ros_ws/install/include
+Libs: -L/home/jsm/ros_ws/install/lib -lrealtime_tools
+Requires: roscpp rospy

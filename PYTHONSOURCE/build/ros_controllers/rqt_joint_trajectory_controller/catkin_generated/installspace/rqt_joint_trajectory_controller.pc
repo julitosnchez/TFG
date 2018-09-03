@@ -1,0 +1,8 @@
+prefix=/home/jsm/ros_ws/install
+
+Name: rqt_joint_trajectory_controller
+Description: Description of rqt_joint_trajectory_controller
+Version: 0.9.4
+Cflags: 
+Libs: -L/home/jsm/ros_ws/install/lib 
+Requires: 

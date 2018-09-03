@@ -1,0 +1,8 @@
+prefix=/home/jsm/ros_ws/install
+
+Name: position_controllers
+Description: Description of position_controllers
+Version: 0.9.4
+Cflags: -I/home/jsm/ros_ws/install/include
+Libs: -L/home/jsm/ros_ws/install/lib -lposition_controllers
+Requires: controller_interface forward_command_controller

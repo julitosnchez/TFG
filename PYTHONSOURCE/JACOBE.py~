@@ -1,0 +1,42 @@
+import rospy
+import argparse
+
+from baxter_pykdl import baxter_kinematics
+from baxter_core_msgs.msg import JointCommand
+import baxter_interface
+import time
+import numpy as np
+
+
+def main():
+    rospy.init_node('trayectoria_rombo')
+
+    arg_fmt = argparse.ArgumentDefaultsHelpFormatter
+    parser = argparse.ArgumentParser(formatter_class=arg_fmt)
+    parser.add_argument(
+        "-l", "--limb", dest="limb", default="left",
+        choices=['left', 'right'],
+        help="joint trajectory limb"
+    )
+
+    #Leemos los argumentos dados como entrada
+    args = parser.parse_args(rospy.myargv()[1:])
+
+    kin = baxter_kinematics(args.limb)
+    limb = baxter_interface.Limb(args.limb)
+
+    m = np.zeros((6,1))
+
+    m[0] = 60
+
+    tau = kin.jacobian_transpose()*m
+
+    tau.reshape((1,7))
+
+    print(tau)
+
+
+
+if __name__ == "__main__":
+    main()
+

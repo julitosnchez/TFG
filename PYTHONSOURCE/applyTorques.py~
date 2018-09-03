@@ -1,0 +1,31 @@
+import rospy
+import baxter_interface
+import matlab.engine
+import time
+
+eng = matlab.engine.connect_matlab()
+t = eng.getTorques()
+rospy.init_node('Hello_Baxter')
+limb = baxter_interface.Limb('left')
+limb.move_to_neutral()
+
+torques = limb.joint_efforts()
+
+tiempo = 5
+
+n_f = len(t['torques'])
+
+for i in range(n_f):
+ torques['left_s0'] = t['torques'][i][0]
+ torques['left_s1'] = t['torques'][i][1]
+ torques['left_e0'] = t['torques'][i][2]
+ torques['left_e1'] = t['torques'][i][3]
+ torques['left_w0'] = t['torques'][i][4]
+ torques['left_w1'] = t['torques'][i][5]
+ torques['left_w2'] = t['torques'][i][6]
+
+ limb.set_joint_positions(torques)
+
+ print(torques)
+
+ time.sleep(1)
